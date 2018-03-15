@@ -27,6 +27,36 @@ public class Queue<T> {
         return this.array[current++];
     }
 
+    //TODO: TEST EMPTY ARRAY
+    public T drain(int n){
+
+        int lastToBeRemoved = current + n;
+        T container;
+        int i = this.current;
+
+        if(lastToBeRemoved >= next){ //There is less than n object in the queue
+
+            for(; i < next-1; i++){
+                this.array[i] = null;
+            }
+
+            container = this.array[i];
+            this.array[i] = null;
+            current = i + 1;
+        }else{
+            for(; i < lastToBeRemoved-1; i++){
+                this.array[i] = null;
+            }
+
+            container = this.array[i];
+            this.array[i] = null;
+            current = i + 1;
+        }
+
+
+        return container; //Last removed element
+    }
+
 
     /** This method double the length of the array. */
     private void doubleArrayLength(){
@@ -41,12 +71,18 @@ public class Queue<T> {
         this.array = newArray;
     }
 
-    /** This test is created for use in testing.
+    /** This method is created for use in testing.
      *  The function returns a value of a given index.
      *  @param index the value of the index you want to get returned.
      *  @return the value of the requested index */
     public T getElement(int index){
          return array[index];
+    }
+
+    /** This method is created for use in testing
+     *  TODO: Add more ex */
+    public T peak(){
+        return this.array[current];
     }
 
 

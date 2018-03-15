@@ -37,10 +37,62 @@ public class TestQueue {
         Assertions.assertEquals(queue.getElement(6), testValue);
     }
 
+    //TODO: Rewrite!
     @Test
     public void dequeueTes01(){
         Queue<Integer> queue = new Queue<Integer>();
         queue.enqueue(5);
     }
 
+    @Test
+    public void drainTest01(){ //Less than number of elements
+        Queue<Integer> queue = new Queue<Integer>();
+        queue.enqueue(10);
+        queue.enqueue(11);
+        queue.enqueue(12);
+        queue.enqueue(13);
+        queue.enqueue(14);
+        queue.enqueue(15);
+        queue.enqueue(16);
+        queue.enqueue(17);
+
+        queue.drain(3);
+
+        Integer testValue = 13;
+
+        Assertions.assertEquals(testValue, queue.peak());
+    }
+
+    @Test
+    public void drainTest02(){
+        Queue<Integer> queue = new Queue<Integer>();
+
+        Assertions.assertNull(queue.dequeue());
+    }
+
+    @Test
+    public void overallTest01(){
+        Queue<Integer> queue = new Queue<Integer>();
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+        queue.enqueue(4);
+
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+
+        queue.enqueue(5);
+        queue.enqueue(6);
+        queue.enqueue(7);
+        queue.enqueue(8);
+        queue.enqueue(9);
+        queue.enqueue(10);
+        queue.enqueue(11);
+        queue.enqueue(12);
+
+        Integer testValue = 4;
+
+        Assertions.assertEquals(testValue, queue.dequeue());
+    }
 }
