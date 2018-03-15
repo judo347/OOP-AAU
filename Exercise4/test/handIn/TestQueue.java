@@ -20,7 +20,7 @@ public class TestQueue {
         Queue<Integer> queue = new Queue<Integer>();
         queue.enqueue(5);
         Integer testValue = 5;
-        Assertions.assertEquals(queue.getElement(0), testValue);
+        Assertions.assertEquals(testValue, queue.peak());
     }
 
     @Test
@@ -37,15 +37,29 @@ public class TestQueue {
         Assertions.assertEquals(queue.getElement(6), testValue);
     }
 
-    //TODO: Rewrite!
     @Test
     public void dequeueTes01(){
         Queue<Integer> queue = new Queue<Integer>();
         queue.enqueue(5);
+
+        queue.dequeue();
+
+        Assertions.assertNull(queue.peak());
     }
 
     @Test
-    public void drainTest01(){ //Less than number of elements
+    public void dequeueTes03(){ //Exception test
+        Queue<Integer> queue = new Queue<Integer>();
+
+        try {
+            queue.dequeue();
+        } catch (EmptyQueueException e){
+            Assertions.assertEquals("The queue is empty!", e.getErrorMsg());
+        }
+    }
+
+    @Test
+    public void drainTest01(){ //Drain less than number of elements
         Queue<Integer> queue = new Queue<Integer>();
         queue.enqueue(10);
         queue.enqueue(11);
@@ -64,10 +78,47 @@ public class TestQueue {
     }
 
     @Test
-    public void drainTest02(){
+    public void drainTest02(){ //Drain empty array with 1
         Queue<Integer> queue = new Queue<Integer>();
 
-        Assertions.assertNull(queue.dequeue());
+        Assertions.assertNull(queue.drain(1));
+    }
+
+    @Test
+    public void drainTest03(){ //Drain all elements
+        Queue<Integer> queue = new Queue<Integer>();
+
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+        queue.enqueue(4);
+        queue.enqueue(5);
+
+        queue.drain(5);
+
+        Assertions.assertNull(queue.peak());
+    }
+
+    @Test
+    public void drainTest04(){ //Drain all elements two times
+        Queue<Integer> queue = new Queue<Integer>();
+
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+        queue.enqueue(4);
+        queue.enqueue(5);
+
+        queue.drain(5);
+
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+        queue.enqueue(4);
+
+        queue.drain(4);
+
+        Assertions.assertNull(queue.peak());
     }
 
     @Test

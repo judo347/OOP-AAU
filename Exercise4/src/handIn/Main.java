@@ -3,6 +3,23 @@ package handIn;
 public class Main {
     public static void main(String[] args) {
         Queue<Integer> queue = new Queue<Integer>();
-        System.out.println(queue.getElement(0));
+        queue.enqueue(1);
+        queue.enqueue(1);
+        queue.enqueue(1);
+        queue.enqueue(1);
+        queue.enqueue(1);
+        queue.enqueue(1);
+        queue.enqueue(1);
+        queue.enqueue(1);
+        queue.enqueue(1);
+        queue.enqueue(1);
+        queue.enqueue(1);
+        queue.enqueue(1);
+        queue.enqueue(1);
+        queue.enqueue(1);
+
+        queue.drainWhile(x -> true);
+        queue.drainWhile(x -> x < 3);
+
     }
 }

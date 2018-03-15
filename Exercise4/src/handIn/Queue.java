@@ -1,5 +1,7 @@
 package handIn;
 
+import java.util.function.Predicate;
+
 public class Queue<T> {
 
     private T[] array;
@@ -10,6 +12,7 @@ public class Queue<T> {
         this.array = (T[]) new Object[1];
         this.current = 0;
         this.next = 0;
+        this.array[current] = null; //TODO NEEDED?
     }
 
     /** Adds an element t to the back of the queue */
@@ -27,7 +30,7 @@ public class Queue<T> {
         return this.array[current++];
     }
 
-    //TODO: TEST EMPTY ARRAY
+    //TODO: TEST EMPTY ARRAY and drain all
     public T drain(int n){
 
         int lastToBeRemoved = current + n;
@@ -57,6 +60,18 @@ public class Queue<T> {
         return container; //Last removed element
     }
 
+    public void drainWhile(Predicate<T> f){
+
+        //handIn.Predicate<Boolean> pred = () -> f;
+        (f) == true;
+        f.condition(x);
+
+        //TODO:
+        while(f){
+            dequeue();
+            System.out.println("DEQUEUING!");
+        }
+    }
 
     /** This method double the length of the array. */
     private void doubleArrayLength(){
@@ -71,6 +86,7 @@ public class Queue<T> {
         this.array = newArray;
     }
 
+    //TODO: May be deleted, replaced by peak
     /** This method is created for use in testing.
      *  The function returns a value of a given index.
      *  @param index the value of the index you want to get returned.
@@ -82,7 +98,10 @@ public class Queue<T> {
     /** This method is created for use in testing
      *  TODO: Add more ex */
     public T peak(){
-        return this.array[current];
+        if(current >= array.length) //Is current element out of bounds
+            return null;
+        else
+            return this.array[current];
     }
 
 

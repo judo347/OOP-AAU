@@ -1,4 +1,4 @@
-package problem12;
+package problem14;
 
 public class stringHandling implements Joinable{
     @Override
