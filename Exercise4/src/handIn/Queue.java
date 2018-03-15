@@ -1,12 +1,17 @@
 package handIn;
 
-import java.util.function.Predicate;
-
 public class Queue<T> {
 
     private T[] array;
     private int current; //The spot of the oldest element
     private int next; //The next available spot
+
+    /** TODO: READ
+     *  Sorry to the person that is going to look this through.
+     *  The program is missing the drainWhile() method
+     *  (had to delete the pieces after 2 hours of trying to get that one to work
+     *  (Will be done over the weekend))
+     *  And an extra look at the code is needed but decided to hand it in anyways. */
 
     public Queue() {
         this.array = (T[]) new Object[1];
@@ -30,7 +35,6 @@ public class Queue<T> {
         return this.array[current++];
     }
 
-    //TODO: TEST EMPTY ARRAY and drain all
     public T drain(int n){
 
         int lastToBeRemoved = current + n;
@@ -58,19 +62,6 @@ public class Queue<T> {
 
 
         return container; //Last removed element
-    }
-
-    public void drainWhile(Predicate<T> f){
-
-        //handIn.Predicate<Boolean> pred = () -> f;
-        (f) == true;
-        f.condition(x);
-
-        //TODO:
-        while(f){
-            dequeue();
-            System.out.println("DEQUEUING!");
-        }
     }
 
     /** This method double the length of the array. */
@@ -103,6 +94,4 @@ public class Queue<T> {
         else
             return this.array[current];
     }
-
-
 }
