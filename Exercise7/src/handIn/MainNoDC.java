@@ -7,11 +7,16 @@ public class MainNoDC {
         String dirStringPath = "out/production/Exercise7/handIn/rootDir/";
 
         CommandLine cl = null;
+        long byteSize;
 
         try {
             cl = new CommandLine(dirStringPath);
+            byteSize = cl.calculateSizeOfFilesInDirectory();
 
-            System.out.println(cl.calculateSizeOfFilesInDirectiory());
+
+            System.out.println("The directory at the path:");
+            System.out.println(cl.getPathDirString());
+            System.out.println("Contains " + byteSize + " bytes.");
 
         } catch (DirectoryPathException e){
             System.out.println(e.getErrorMsg());
