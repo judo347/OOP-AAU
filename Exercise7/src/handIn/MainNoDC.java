@@ -1,6 +1,6 @@
 package handIn;
 
-public class Main {
+public class MainNoDC {
 
     public static void main(String[] args) {
 
